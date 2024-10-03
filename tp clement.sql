@@ -59,12 +59,13 @@ CREATE TABLE ADHERENT(
     
     CONSTRAINT pk_noA PRIMARY KEY (noA),
 
-    CONSTRAINT ck_prenomA CHECK (prenomA IS NOT NULL),
-    CONSTRAINT ck_telA CHECK (telA IS NOT NULL)
-
+    CONSTRAINT ck_prenomA CHECK (prenomA IS NOT NULL)
+   /* CONSTRAINT ck_telA CHECK (telA IS NOT NULL) */
     
     );
-    
+
+DROP TABLE ADHERENT CASCADE CONSTRAINTS;    
+
     
     
     
@@ -89,12 +90,13 @@ CREATE TABLE MATERIEL(
 CREATE TABLE SUIVRE(
     noA NUMBER,
     codeC NUMBER,
+    
     CONSTRAINT pk_suivre PRIMARY KEY (noA,codeC),
     CONSTRAINT fk_suivre_adherent FOREIGN KEY(noA) REFERENCES ADHERENT(noA),
     CONSTRAINT fk_suivre_cours FOREIGN KEY(codeC) REFERENCES COURS(codeC)
     
-    );
-    
+);
+
     
     
     
@@ -145,8 +147,28 @@ INSERT INTO materiel(codeM,type,marque,prix,qteDispo)
     VALUES(4,'raquette','Smash',8,2);
     
     
-    
-    
-    
+INSERT INTO suivre(codec,noa)
+    VALUES(1,1);
+INSERT INTO suivre(codec,noa)
+    VALUES(1,2);
+INSERT INTO suivre(codec,noa)
+    VALUES(3,1);
+INSERT INTO suivre(codec,noa)
+    VALUES(2,3);
         
+INSERT INTO louer(noa,codem,quantite)
+    VALUES (3,1,1);
+INSERT INTO louer(noa,codem,quantite)
+    VALUES (2,1,2);
+
+select * from adherent ;
+
+select * from cours ;
+select * from materiel ;
+select * from moniteur ;
+select * from specialite ;
+select * from LOUER ;
+select * from suivre ;
+
+
     
