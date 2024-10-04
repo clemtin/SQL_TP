@@ -1,3 +1,13 @@
+DROP TABLE LOUER;
+DROP TABLE SUIVRE;
+DROP TABLE MATERIEL;
+DROP TABLE ADHERENT;
+DROP TABLE COURS;
+DROP TABLE SPECIALITE;
+DROP TABLE MONITEUR;
+
+
+
 CREATE TABLE MONITEUR(
     noM NUMBER,
     nomM VARCHAR2(30),
@@ -64,7 +74,7 @@ CREATE TABLE ADHERENT(
     
     );
 
-DROP TABLE ADHERENT CASCADE CONSTRAINTS;    
+   
 
     
     
@@ -111,6 +121,9 @@ CREATE TABLE LOUER(
     
     
 );
+
+
+
 
 INSERT INTO moniteur(nom,nomm,prenomm,adresse,datenaiss)
     VALUES (1,'DUPOND','Jean','12 route du col, Germ','01/01/1980');
@@ -161,6 +174,9 @@ INSERT INTO louer(noa,codem,quantite)
 INSERT INTO louer(noa,codem,quantite)
     VALUES (2,1,2);
 
+
+/*    TP2  + LES DROP DE DEVANT    */
+
 select * from adherent ;
 
 select * from cours ;
@@ -170,5 +186,61 @@ select * from specialite ;
 select * from LOUER ;
 select * from suivre ;
 
+/*    4a    */
+DELETE FROM MATERIEL
+WHERE type ='raquette';
 
-    
+/*    4b    */
+DELETE FROM SUIVRE
+WHERE noA=1 AND codeC=3;
+
+SELECT * FROM SUIVRE;
+
+
+/*    4c   */
+DELETE FROM SUIVRE 
+WHERE codeC=2;
+
+DELETE FROM COURS
+WHERE codeC=2;
+
+
+SELECT * FROM SUIVRE;
+SELECT * FROM COURS;
+
+/*    4d */
+UPDATE ADHERENT
+SET adresseA='23 route de Toulouse,Saint-Gaudens'
+WHERE adherent.noa =1;
+
+SELECT * FROM ADHERENT;
+
+/*    4e   */
+UPDATE MATERIEL
+SET prix=prix*1.1
+WHERE codeM=1 OR codeM=2;
+/* WHERE pas obligatoire */
+
+SELECT * FROM MATERIEL;
+
+/*    4f  */
+UPDATE MATERIEL
+SET qtedispo=qtedispo+2
+WHERE codeM=1;
+
+SELECT * FROM MATERIEL;
+
+
+SELECT * from ALL_TABlES
+WHERE table_name='TP2_*'
+AND OWNER='NEGILLES_HUBERT';
+
+SELECT * from ALL_TAB_COLUMNS
+WHERE table_name='TP2_*'
+AND OWNER='NEGILLES_HUBERT';
+
+
+
+
+
+
